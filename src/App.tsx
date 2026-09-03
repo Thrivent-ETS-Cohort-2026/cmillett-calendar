@@ -6,7 +6,6 @@ import type { HeaderProps, LoginProps, SignupProps } from "./types/PropTypes";
 import Header from "./components/Header";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import { addUser } from "./service/UserService";
 
 
 export default function App() {
@@ -16,12 +15,6 @@ export default function App() {
   const [displayLoginToggle, setDisplayLoginToggle] = useState<boolean>(false);
   const [displaySignupToggle, setDisplaySignupToggle] = useState<boolean>(false);
 
-  const createUser = () => addUser({
-    "name": "jfjfjf",
-    "email": "lkjsdf@makak.ck",
-    "password": "lkajdfkjdfj",
-    "eventsById": []
-  })
 
   useEffect(() => {
     setDisplayLoginToggle(false);
@@ -73,9 +66,6 @@ export default function App() {
 
   return (
     <main className="w-screen h-screen">
-      <button type="button" onClick={() => createUser()}>
-        click
-      </button>
       {displayDashboard()}
       {displayLoginToggle && <Login {...loginProps} />}
       {displaySignupToggle && <Signup {...signupProps} />}
