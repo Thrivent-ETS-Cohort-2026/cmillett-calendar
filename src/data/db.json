@@ -1,0 +1,327 @@
+{
+  "users": [
+    {
+      "id": 0,
+      "name": "Admin",
+      "email": "admin@mail.com",
+      "password": "alpine",
+      "eventsById": [
+        0
+      ]
+    },
+    {
+      "name": ";lkjasdf",
+      "email": "jfjfjk@mmmsk",
+      "password": "jfjfjfj",
+      "eventsById": [],
+      "id": 1
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 2
+    },
+    {
+      "name": "eijjfsdfkk",
+      "email": "lasdlkfk@jjf",
+      "password": "kjdsjfjf",
+      "eventsById": [],
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "id": 8
+    },
+    {
+      "id": 9
+    },
+    {
+      "id": 10
+    },
+    {
+      "id": 11
+    },
+    {
+      "id": 12
+    },
+    {
+      "id": 13
+    },
+    {
+      "id": 14
+    },
+    {
+      "id": 15
+    },
+    {
+      "id": 16
+    },
+    {
+      "id": 17
+    },
+    {
+      "id": 18
+    },
+    {
+      "id": 19
+    },
+    {
+      "id": 20
+    },
+    {
+      "id": 21
+    },
+    {
+      "id": 22
+    },
+    {
+      "id": 23
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 24
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 25
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 26
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 27
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 28
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 29
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 30
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 31
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 32
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 33
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 34
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 35
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 36
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 37
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 38
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 39
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 40
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 41
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 42
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 43
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 44
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 45
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 46
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 47
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 48
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 49
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 50
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 51
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 52
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 53
+    },
+    {
+      "name": "jfjfjf",
+      "email": "lkjsdf@makak.ck",
+      "password": "lkajdfkjdfj",
+      "eventsById": [],
+      "id": 54
+    }
+  ],
+  "events": [
+    {
+      "id": 0,
+      "date": [
+        2026,
+        9,
+        1
+      ],
+      "title": "Admin Event",
+      "time": "12:00 PM",
+      "description": "Test event.",
+      "location": "Minnesota",
+      "createdBy": 0,
+      "invitedTo": []
+    }
+  ]
+}
