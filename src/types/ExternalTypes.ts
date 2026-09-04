@@ -15,6 +15,6 @@ export interface Event {
     time: string;
     description: string;
     location: string;
-    createdBy: User;
+    createdBy: number;
     invitedTo: number[];
 }
