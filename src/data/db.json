@@ -13,42 +13,14 @@
   "events": [
     {
       "id": 0,
-      "date": [
-        2026,
-        8,
-        1
-      ],
+      "date": {
+        "year": 2026,
+        "month": 8,
+        "day": 1
+      },
       "title": "Admin Event",
       "time": "12:00 PM",
       "description": "Test event.",
-      "location": "Minnesota",
-      "createdBy": 0,
-      "invitedTo": []
-    },
-    {
-      "id": 1,
-      "date": [
-        2026,
-        8,
-        1
-      ],
-      "title": "Cool Event",
-      "time": "12:00 PM",
-      "description": "Test event 2.",
-      "location": "Minnesota",
-      "createdBy": 0,
-      "invitedTo": []
-    },
-    {
-      "id": 2,
-      "date": [
-        2026,
-        8,
-        1
-      ],
-      "title": "Supper",
-      "time": "12:00 PM",
-      "description": "Test event 2.",
       "location": "Minnesota",
       "createdBy": 0,
       "invitedTo": []

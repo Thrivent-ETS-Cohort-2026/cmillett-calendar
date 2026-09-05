@@ -1,4 +1,5 @@
 import type { Event, User } from "./ExternalTypes";
+import type { DateFormat } from "./DataTypes";
 
 export interface HeaderProps {
     activeUser: User | undefined;
@@ -20,14 +21,13 @@ export interface DashboardProps {
 }
 
 export interface CalViewProps {
+    currentDate: DateFormat;
     userEvents: Event[];
-    getSelectedDay: number[];
-    setSelectedDay: (date: number[]) => void;
+    getSelectedDate: DateFormat;
+    setSelectedDate: (date: DateFormat) => void;
 }
 
 export interface DayInfoProps {
     userEvents: Event[];
-    year: number;
-    month: number;
-    day: number;
+    thisDate: DateFormat;
 }

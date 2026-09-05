@@ -1,3 +1,4 @@
+import type { DateFormat } from "./DataTypes";
 
 
 export interface User {
@@ -10,7 +11,7 @@ export interface User {
 
 export interface Event {
     id: number;
-    date: [number, number, number];
+    date: DateFormat;
     title: string;
     time: string;
     description: string;

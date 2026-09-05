@@ -11,15 +11,15 @@ import Dashboard from "./components/Dashboard/Dashboard";
 
 export default function App() {
 
-  // const devUser: User = {
-  //   id: 0,
-  //   name: "DEV",
-  //   email: "dev@dev.com",
-  //   password: "dev",
-  //   eventsById: []
-  // }
+  const devUser: User = {
+    id: 0,
+    name: "DEV",
+    email: "dev@dev.com",
+    password: "dev",
+    eventsById: []
+  }
 
-  const [currentUser, setCurrentUser] = useState<User | undefined>();
+  const [currentUser, setCurrentUser] = useState<User | undefined>(devUser);
 
   const [displayLoginToggle, setDisplayLoginToggle] = useState<boolean>(false);
   const [displaySignupToggle, setDisplaySignupToggle] = useState<boolean>(false);

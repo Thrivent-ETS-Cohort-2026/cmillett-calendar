@@ -6,13 +6,18 @@ import type { CalViewProps, DashboardProps } from "../../types/PropTypes";
 
 import CalDetails from "./CalDetails";
 import CalView from "./CalView";
+import type { DateFormat } from "../../types/DataTypes";
+import { getCurrentDate } from "../../data/Data";
 
 
 export default function Dashboard({ currentUser }: DashboardProps) {
 
-    const [currentUserEvents, setCurrentUserEvents] = useState<Event[]>([]);
-    const [selectedDay, setSelectedDay] = useState<number[]>([]);
+    const currentDate = getCurrentDate();
 
+    const [currentUserEvents, setCurrentUserEvents] = useState<Event[]>([]);
+    const [selectedDate, setSelectedDate] = useState<DateFormat>(currentDate);
+
+    useEffect(() => {console.log(selectedDate)}, [selectedDate])
 
     useEffect(() => {(async () => {
         const events: Event[] = await fetchEvents();
@@ -24,9 +29,10 @@ export default function Dashboard({ currentUser }: DashboardProps) {
 
 
     const calViewProps: CalViewProps = {
+        currentDate: currentDate,
         userEvents: currentUserEvents,
-        getSelectedDay: selectedDay,
-        setSelectedDay: (date: number[]) => setSelectedDay(date)
+        getSelectedDate: selectedDate,
+        setSelectedDate: (date: DateFormat) => setSelectedDate(date)
     }
 
     return (

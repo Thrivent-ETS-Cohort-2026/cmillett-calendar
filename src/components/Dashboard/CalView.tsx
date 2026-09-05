@@ -1,17 +1,16 @@
 import { useState } from "react";
 import DayInfo from "./DayInfo";
 import type { CalViewProps, DayInfoProps } from "../../types/PropTypes";
+import { dayList, monthList } from "../../data/Data";
+import type { DateFormat, Months, Days } from "../../types/DataTypes";
 
 
-export default function CalView({ userEvents, getSelectedDay, setSelectedDay }: CalViewProps) {
-
-    const currentDate = new Date;
-    const currentDateArr = [currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()];
+export default function CalView({ currentDate, userEvents, getSelectedDate, setSelectedDate }: CalViewProps) {
 
     // 0 based
-    const [selectedMonth, setSelectedMonth] = useState<number>(currentDate.getMonth());
+    const [selectedMonth, setSelectedMonth] = useState<number>(currentDate.month);
     // absolute
-    const [selectedYear, setSelectedYear] = useState<number>(currentDate.getFullYear());
+    const [selectedYear, setSelectedYear] = useState<number>(currentDate.year);
 
 
     function createDateObj(monthInput: number, yearInput: number) {
@@ -25,39 +24,47 @@ export default function CalView({ userEvents, getSelectedDay, setSelectedDay }: 
         return dateObj
     }
 
-    const activeDate = createDateObj(selectedMonth, selectedYear);
+    const displayedDate = createDateObj(selectedMonth, selectedYear);
 
-    const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    const days: string[] = ["S", "M", "Tu", "W", "Th", "F", "S"];
+    // visual; not used for logic
+    const months: Months = monthList();
+    const days: Days = dayList();
 
 
     function renderDays() {
         let daysList = [];
 
-        for (let i = 1; i < activeDate.daysInMonth + 1; i++) {
+        for (let day = 1; day < displayedDate.daysInMonth + 1; day++) {
+            // highlight today on calendar
             let today: boolean = false;
-            if (activeDate.year === currentDateArr[0] &&
-                activeDate.month === currentDateArr[1] &&
-                i === currentDateArr[2]
+            if (displayedDate.year === currentDate.year &&
+                displayedDate.month === currentDate.month &&
+                day === currentDate.day
             ) today = true;
 
+            // find selected day. Defaults to today
             let selected: boolean = false;
-            if (activeDate.year === getSelectedDay[0] &&
-                activeDate.month === getSelectedDay[1] &&
-                i === getSelectedDay[2]
+            if (displayedDate.year === getSelectedDate.year &&
+                displayedDate.month === getSelectedDate.month &&
+                day === getSelectedDate.day
             ) selected = true;
+
+            // grab date include iterated day
+            const thisDate: DateFormat = {
+                year: displayedDate.year,
+                month: displayedDate.month,
+                day: day
+            }
 
             const dayInfoProps: DayInfoProps = {
                 userEvents: userEvents,
-                year: selectedYear,
-                month: selectedMonth,
-                day: i
+                thisDate: thisDate
             }
 
             daysList.push(
-                <button id={`${selectedYear}-${selectedMonth}-${i}`} key={`${selectedYear}-${selectedMonth}-${i}`}
+                <button id={`${selectedYear}-${selectedMonth}-${day}`} key={`${selectedYear}-${selectedMonth}-${day}`}
                     className="text-left hover:bg-third/50"
-                    onClick={() => { setSelectedDay([activeDate.year, activeDate.month, i]) }}
+                    onClick={() => { setSelectedDate(thisDate) }}
                 >
                     <div className={`size-full border rounded-md p-2 flex flex-col 
                         ${selected ? "border-blue-300" : "border-prime-text"}
@@ -73,7 +80,7 @@ export default function CalView({ userEvents, getSelectedDay, setSelectedDay }: 
     }
 
     function renderSpace() {
-        const spaceNeeded: number = activeDate.firstDay;
+        const spaceNeeded: number = displayedDate.firstDay;
         let spaces = [];
 
         for (let i = 0; i < spaceNeeded; i++) {
@@ -85,7 +92,7 @@ export default function CalView({ userEvents, getSelectedDay, setSelectedDay }: 
         return spaces;
     }
 
-    function changeDate(value: number): void {
+    function changeDate(value: 1 | -1): void {
         if (value === 1) {
             if (selectedMonth === 11) {
                 setSelectedMonth(0);
@@ -101,9 +108,9 @@ export default function CalView({ userEvents, getSelectedDay, setSelectedDay }: 
 
     return (
         <section className="w-1/2 flex flex-col border-2 border-third rounded-2xl m-2 p-4">
-            <header className="flex justify-between">
+            <header className="flex justify-between px-2">
                 <h1 className="w-1/3 text-2xl font-bold">
-                    {months[activeDate.month]}
+                    {months[displayedDate.month]}
                 </h1>
 
                 <div className="w-1/3 text-center">
@@ -120,10 +127,11 @@ export default function CalView({ userEvents, getSelectedDay, setSelectedDay }: 
                 </div>
 
                 <h1 className="w-1/3 text-2xl text-right font-bold">
-                    {activeDate.year}
+                    {displayedDate.year}
                 </h1>
             </header>
 
+            {/* Days Header */}
             <div className="grid grid-cols-7 mt-2">
                 {days.map((day, index) => {
                     return (
@@ -136,6 +144,7 @@ export default function CalView({ userEvents, getSelectedDay, setSelectedDay }: 
                 })}
             </div>
 
+            {/* Calendar */}
             <div className="grow grid grid-cols-7 grid-rows-[repeat(6,1fr)] gap-2 mt-2">
                 {renderSpace()}
                 {renderDays()}
