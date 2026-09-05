@@ -18,9 +18,9 @@
         "month": 8,
         "day": 1
       },
-      "title": "Admin Event",
+      "title": "Test Event",
       "time": "12:00 PM",
-      "description": "Test event.",
+      "description": "This is a test event. It is a really interesting test event with lots of different tests in it. I'm not sure why, but I will be there. It is going to be a grand ol' time.",
       "location": "Minnesota",
       "createdBy": 0,
       "invitedTo": []

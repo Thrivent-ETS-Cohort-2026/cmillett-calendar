@@ -21,6 +21,16 @@ export type Months = [
 ];
 
 export type Days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+]
+
+export type DaysShort = [
     "S",
     "M",
     "Tu",

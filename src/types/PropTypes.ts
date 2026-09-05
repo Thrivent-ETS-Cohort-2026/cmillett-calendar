@@ -20,6 +20,18 @@ export interface DashboardProps {
     currentUser: User | undefined;
 }
 
+export interface CalDetailsProps {
+    getSelectedDate: DateFormat;
+    currentUser: User | undefined;
+    userEvents: Event[];
+}
+
+export interface EventListProps {
+    getSelectedDate: DateFormat;
+    currentUser: User | undefined;
+    userEvents: Event[];
+}
+
 export interface CalViewProps {
     currentDate: DateFormat;
     userEvents: Event[];

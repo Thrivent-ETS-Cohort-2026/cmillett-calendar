@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchEvents } from "../../service/EventService";
 
 import type { Event } from "../../types/ExternalTypes";
-import type { CalViewProps, DashboardProps } from "../../types/PropTypes";
+import type { CalDetailsProps, CalViewProps, DashboardProps } from "../../types/PropTypes";
 
 import CalDetails from "./CalDetails";
 import CalView from "./CalView";
@@ -17,16 +17,24 @@ export default function Dashboard({ currentUser }: DashboardProps) {
     const [currentUserEvents, setCurrentUserEvents] = useState<Event[]>([]);
     const [selectedDate, setSelectedDate] = useState<DateFormat>(currentDate);
 
-    useEffect(() => {console.log(selectedDate)}, [selectedDate])
+    useEffect(() => { console.log(selectedDate) }, [selectedDate])
 
-    useEffect(() => {(async () => {
-        const events: Event[] = await fetchEvents();
+    useEffect(() => {
+        (async () => {
+            const events: Event[] = await fetchEvents();
 
-        const findUserEvents: Event[] = events.filter((event) => event.createdBy === currentUser?.id);
+            const findUserEvents: Event[] = events.filter((event) => event.createdBy === currentUser?.id);
 
-        setCurrentUserEvents(findUserEvents);
-    })()}, [])
+            setCurrentUserEvents(findUserEvents);
+        })()
+    }, [])
 
+
+    const calDetailsProps: CalDetailsProps = {
+        getSelectedDate: selectedDate,
+        currentUser: currentUser,
+        userEvents: currentUserEvents
+    }
 
     const calViewProps: CalViewProps = {
         currentDate: currentDate,
@@ -37,7 +45,7 @@ export default function Dashboard({ currentUser }: DashboardProps) {
 
     return (
         <>
-            <CalDetails />
+            <CalDetails {...calDetailsProps} />
             <CalView {...calViewProps} />
         </>
     )

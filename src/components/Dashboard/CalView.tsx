@@ -1,8 +1,8 @@
 import { useState } from "react";
 import DayInfo from "./DayInfo";
 import type { CalViewProps, DayInfoProps } from "../../types/PropTypes";
-import { dayList, monthList } from "../../data/Data";
-import type { DateFormat, Months, Days } from "../../types/DataTypes";
+import { dayListShort, monthList } from "../../data/Data";
+import type { DateFormat, Months, DaysShort } from "../../types/DataTypes";
 
 
 export default function CalView({ currentDate, userEvents, getSelectedDate, setSelectedDate }: CalViewProps) {
@@ -28,7 +28,7 @@ export default function CalView({ currentDate, userEvents, getSelectedDate, setS
 
     // visual; not used for logic
     const months: Months = monthList();
-    const days: Days = dayList();
+    const days: DaysShort = dayListShort();
 
 
     function renderDays() {

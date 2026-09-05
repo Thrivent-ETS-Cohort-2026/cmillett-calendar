@@ -1,4 +1,4 @@
-import type { DateFormat, Days, Months } from "../types/DataTypes";
+import type { DateFormat, Days, DaysShort, Months } from "../types/DataTypes";
 
 export function getCurrentDate(): DateFormat {
 
@@ -32,6 +32,18 @@ export function monthList(): Months {
 }
 
 export function dayList(): Days {
+    return [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ]
+}
+
+export function dayListShort(): DaysShort {
     return [
         "S",
         "M",
