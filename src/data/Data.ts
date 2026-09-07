@@ -1,4 +1,5 @@
 import type { DateFormat, Days, DaysShort, Months } from "../types/DataTypes";
+import type { Event, User } from "../types/ExternalTypes";
 
 export function getCurrentDate(): DateFormat {
 
@@ -53,4 +54,22 @@ export function dayListShort(): DaysShort {
         "F",
         "S"
     ]
+}
+
+export function createEventTemplate(date: DateFormat, user: User): Event {
+    const event: Event = {
+        title: "",
+        date: date,
+        time: {
+            hour: 12,
+            minute: 30,
+            suffix: "PM"
+        },
+        location: "",
+        description: "",
+        createdBy: user.id!,
+        invitedTo: []
+    }
+
+    return event;
 }

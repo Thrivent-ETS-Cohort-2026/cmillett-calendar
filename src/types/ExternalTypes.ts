@@ -1,4 +1,4 @@
-import type { DateFormat } from "./DataTypes";
+import type { DateFormat, TimeFormat } from "./DataTypes";
 
 
 export interface User {
@@ -10,12 +10,12 @@ export interface User {
 }
 
 export interface Event {
-    id: number;
-    date: DateFormat;
+    id?: number;
     title: string;
-    time: string;
-    description: string;
+    date: DateFormat;
+    time: TimeFormat
     location: string;
+    description: string;
     createdBy: number;
     invitedTo: number[];
 }

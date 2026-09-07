@@ -24,12 +24,14 @@ export interface CalDetailsProps {
     getSelectedDate: DateFormat;
     currentUser: User | undefined;
     userEvents: Event[];
+    setStatus: (status: boolean) => void;
 }
 
 export interface EventListProps {
     getSelectedDate: DateFormat;
     currentUser: User | undefined;
     userEvents: Event[];
+    setSelectedEvent: (event: Event) => void;
 }
 
 export interface CalViewProps {

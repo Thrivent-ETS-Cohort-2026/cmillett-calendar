@@ -5,6 +5,16 @@ export type DateFormat = {
     day: number
 };
 
+export type HourFormat = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+export type MinuteFormat = 0 | 15 | 30 | 45;
+export type SuffixFormat = "AM" | "PM";
+
+export type TimeFormat = {
+    hour: HourFormat,
+    minute: MinuteFormat,
+    suffix: SuffixFormat
+};
+
 export type Months = [
     "January",
     "February",

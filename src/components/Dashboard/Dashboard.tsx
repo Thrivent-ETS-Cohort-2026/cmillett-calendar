@@ -17,7 +17,7 @@ export default function Dashboard({ currentUser }: DashboardProps) {
     const [currentUserEvents, setCurrentUserEvents] = useState<Event[]>([]);
     const [selectedDate, setSelectedDate] = useState<DateFormat>(currentDate);
 
-    useEffect(() => { console.log(selectedDate) }, [selectedDate])
+    const [loadingStatus, setLoadingStatus] = useState<boolean>(false);
 
     useEffect(() => {
         (async () => {
@@ -27,20 +27,21 @@ export default function Dashboard({ currentUser }: DashboardProps) {
 
             setCurrentUserEvents(findUserEvents);
         })()
-    }, [])
+    }, [loadingStatus])
 
 
     const calDetailsProps: CalDetailsProps = {
         getSelectedDate: selectedDate,
         currentUser: currentUser,
-        userEvents: currentUserEvents
+        userEvents: currentUserEvents,
+        setStatus: (status) => setLoadingStatus(status)
     }
 
     const calViewProps: CalViewProps = {
         currentDate: currentDate,
         userEvents: currentUserEvents,
         getSelectedDate: selectedDate,
-        setSelectedDate: (date: DateFormat) => setSelectedDate(date)
+        setSelectedDate: (date) => setSelectedDate(date)
     }
 
     return (

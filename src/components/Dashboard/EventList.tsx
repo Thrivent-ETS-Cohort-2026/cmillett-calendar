@@ -2,7 +2,7 @@ import type { Event } from "../../types/ExternalTypes";
 import type { EventListProps } from "../../types/PropTypes";
 
 
-export default function EventList({ getSelectedDate, currentUser, userEvents }: EventListProps) {
+export default function EventList({ getSelectedDate, currentUser, userEvents, setSelectedEvent }: EventListProps) {
 
     function findEvents(): Event[] {
         let eventsFound: Event[] = [];
@@ -34,12 +34,16 @@ export default function EventList({ getSelectedDate, currentUser, userEvents }: 
             <>
                 {userEventsToday.map((event) => {
                     return (
-                        <button className="w-full bg-third/20 p-2 border border-blue-300 rounded flex">
+                        <button 
+                            key={event.id}
+                            className="w-full bg-third/20 p-2 border border-blue-300 rounded flex hover:bg-third/40 mb-2"
+                            onClick={() => setSelectedEvent(event)}
+                        >
                             <div className="w-1/2 text-left">
                                 <p>{event.title}</p>
-                                <p>{event.time}</p>
+                                <p>{event.time.hour}:{event.time.minute == 0 ? "00" : event.time.minute} {event.time.suffix}</p>
                             </div>
-                            <div className="w-1/2 overflow-scroll text-justify">
+                            <div className="w-1/2 h-[2lh] overflow-scroll text-justify">
                                 <p>{event.description}</p>
                             </div>
                         </button>
