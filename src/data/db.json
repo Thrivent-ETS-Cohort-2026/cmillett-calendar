@@ -5,6 +5,12 @@
       "name": "Admin",
       "email": "admin@mail.com",
       "password": "alpine"
+    },
+    {
+      "id": 1,
+      "name": "John",
+      "email": "john@mail.com",
+      "password": "alpine"
     }
   ],
   "events": [
@@ -21,84 +27,91 @@
         "suffix": "PM"
       },
       "location": "Minneapolis, Minnesota",
-      "description": "This is a test event which is happening in Minneapolis, Minnesota. It's going to be a lot of fun. sdfjdjfsjdf. jfjfjfjslls.",
+      "description": "This is a test event which is happening in Minneapolis, Minnesota. It's going to be a lot of fun.",
       "createdBy": {
         "id": 0,
         "name": "DEV",
         "email": "dev@dev.com",
         "password": "dev"
       },
-      "invitedTo": [],
       "id": 1
+    }
+  ],
+  "invites": [
+    {
+      "event": {
+        "title": "Invite",
+        "date": {
+          "year": 2026,
+          "month": 8,
+          "day": 1
+        },
+        "time": {
+          "hour": 12,
+          "minute": 30,
+          "suffix": "PM"
+        },
+        "location": "Minneapolis, Minnesota",
+        "description": "This is a test event which is happening in Minneapolis, Minnesota. It's going to be a lot of fun. sdfjdjfsjdf. jfjfjfjslls.",
+        "createdBy": {
+          "id": 10,
+          "name": "DEV",
+          "email": "dev@dev.com",
+          "password": "dev"
+        },
+        "id": 1
+      },
+      "invitees": [
+        {
+          "id": 0,
+          "name": "Admin",
+          "email": "admin@mail.com",
+          "password": "alpine",
+          "status": "pending"
+        },
+        {
+          "id": 1,
+          "name": "John",
+          "email": "john@mail.com",
+          "password": "alpine",
+          "status": "rejected"
+        }
+      ],
+      "id": 0
     },
     {
-      "title": "Dinner",
-      "date": {
-        "year": 2026,
-        "month": 8,
-        "day": 1
+      "event": {
+        "title": "Event",
+        "date": {
+          "year": 2026,
+          "month": 8,
+          "day": 1
+        },
+        "time": {
+          "hour": 12,
+          "minute": 30,
+          "suffix": "PM"
+        },
+        "location": "Minneapolis, Minnesota",
+        "description": "This is a test event which is happening in Minneapolis, Minnesota. It's going to be a lot of fun.",
+        "createdBy": {
+          "id": 0,
+          "name": "DEV",
+          "email": "dev@dev.com",
+          "password": "dev"
+        },
+        "id": 1
       },
-      "time": {
-        "hour": 4,
-        "minute": 30,
-        "suffix": "AM"
-      },
-      "location": "Home",
-      "description": "Make dinner at 4:30 AM.",
-      "createdBy": {
-        "id": 0,
-        "name": "DEV",
-        "email": "dev@dev.com",
-        "password": "dev"
-      },
-      "invitedTo": [],
-      "id": 3
-    },
-    {
-      "title": "Cool",
-      "date": {
-        "year": 2026,
-        "month": 8,
-        "day": 1
-      },
-      "time": {
-        "hour": 12,
-        "minute": 30,
-        "suffix": "PM"
-      },
-      "location": "",
-      "description": "",
-      "createdBy": {
-        "id": 0,
-        "name": "DEV",
-        "email": "dev@dev.com",
-        "password": "dev"
-      },
-      "invitedTo": [],
-      "id": 4
-    },
-    {
-      "title": "Neat",
-      "date": {
-        "year": 2026,
-        "month": 8,
-        "day": 1
-      },
-      "time": {
-        "hour": 12,
-        "minute": 30,
-        "suffix": "PM"
-      },
-      "location": "",
-      "description": "",
-      "createdBy": {
-        "id": 0,
-        "name": "DEV",
-        "email": "dev@dev.com",
-        "password": "dev"
-      },
-      "invitedTo": [],
-      "id": 5
+      "invitees": [
+        {
+          "id": 1,
+          "name": "John",
+          "email": "john@mail.com",
+          "password": "alpine",
+          "status": "pending"
+        }
+      ],
+      "id": 1
     }
   ]
 }

@@ -8,6 +8,10 @@ export interface User {
     password: string;
 }
 
+export interface Invitee extends User {
+    status: "pending" | "accepted" | "rejected";
+}
+
 export interface Event {
     id?: number;
     title: string;
@@ -16,5 +20,10 @@ export interface Event {
     location: string;
     description: string;
     createdBy: User;
-    invitedTo: number[];
+}
+
+export interface Invite {
+    event: Event;
+    invitees: Invitee[];
+    id?: number;
 }

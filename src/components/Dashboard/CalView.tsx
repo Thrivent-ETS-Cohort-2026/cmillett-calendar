@@ -5,7 +5,7 @@ import { dayListShort, monthList } from "../../data/Data";
 import type { DateFormat, Months, DaysShort } from "../../types/DataTypes";
 
 
-export default function CalView({ currentDate, userEvents, getSelectedDate, setSelectedDate }: CalViewProps) {
+export default function CalView({ currentUser, currentDate, userEvents, userInvites, getSelectedDate, setSelectedDate }: CalViewProps) {
 
     // 0 based
     const [selectedMonth, setSelectedMonth] = useState<number>(currentDate.month);
@@ -57,13 +57,15 @@ export default function CalView({ currentDate, userEvents, getSelectedDate, setS
             }
 
             const dayInfoProps: DayInfoProps = {
+                currentUser: currentUser,
                 userEvents: userEvents,
+                userInvites: userInvites,
                 thisDate: thisDate
             }
 
             daysList.push(
                 <button id={`${selectedYear}-${selectedMonth}-${day}`} key={`${selectedYear}-${selectedMonth}-${day}`}
-                    className="text-left hover:bg-third/50"
+                    className="size-full text-left hover:bg-third/50"
                     onClick={() => { setSelectedDate(thisDate) }}
                 >
                     <div className={`size-full border rounded-md p-2 flex flex-col  
