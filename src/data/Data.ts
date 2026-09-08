@@ -67,7 +67,7 @@ export function createEventTemplate(date: DateFormat, user: User): Event {
         },
         location: "",
         description: "",
-        createdBy: user.id!,
+        createdBy: user,
         invitedTo: []
     }
 

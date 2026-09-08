@@ -21,6 +21,13 @@ export default function EventList({ getSelectedDate, currentUser, userEvents, se
 
     const userEventsToday = findEvents();
 
+
+    function colorMap(event: Event): string {
+        return event.createdBy.id === currentUser!.id ?
+            "border-blue-300" :
+            "border-yellow-300"
+    }
+
     function displayList() {
         if (userEventsToday.length === 0) {
             return (
@@ -34,9 +41,9 @@ export default function EventList({ getSelectedDate, currentUser, userEvents, se
             <>
                 {userEventsToday.map((event) => {
                     return (
-                        <button 
+                        <button
                             key={event.id}
-                            className="w-full bg-third/20 p-2 border border-blue-300 rounded flex hover:bg-third/40 mb-2"
+                            className={`w-full bg-third/20 p-2 border ${colorMap(event)} rounded flex hover:bg-third/40 mb-2`}
                             onClick={() => setSelectedEvent(event)}
                         >
                             <div className="w-1/2 text-left">

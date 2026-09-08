@@ -24,6 +24,7 @@ export interface CalDetailsProps {
     getSelectedDate: DateFormat;
     currentUser: User | undefined;
     userEvents: Event[];
+    getStatus: boolean;
     setStatus: (status: boolean) => void;
 }
 

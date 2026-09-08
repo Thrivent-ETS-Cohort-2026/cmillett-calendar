@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
+
 import { createEventTemplate, dayList, monthList } from "../../data/Data";
-import type { Days, HourFormat, MinuteFormat, SuffixFormat } from "../../types/DataTypes";
-import type { CalDetailsProps, EventListProps } from "../../types/PropTypes";
-import EventList from "./EventList";
-import type { Event } from "../../types/ExternalTypes";
 import { handleEventDelete, handleEventUpdate } from "../../service/EventService";
 
+import EventList from "./EventList";
 
-export default function CalDetails({ getSelectedDate, currentUser, userEvents, setStatus }: CalDetailsProps) {
+import type { Days, HourFormat, MinuteFormat, SuffixFormat } from "../../types/DataTypes";
+import type { CalDetailsProps, EventListProps } from "../../types/PropTypes";
+import type { Event } from "../../types/ExternalTypes";
+
+
+export default function CalDetails({ getSelectedDate, currentUser, userEvents, getStatus, setStatus }: CalDetailsProps) {
 
     const [selectedEvent, setSelectedEvent] = useState<Event | undefined>(undefined);
     // reset selectedEvent when user changes date.
@@ -53,7 +56,7 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, s
             },
             location: eventLocation ?? "N/A",
             description: eventDescription ?? "N/A",
-            createdBy: currentUser!.id!,
+            createdBy: currentUser!,
             invitedTo: []
         }
 
@@ -154,7 +157,8 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, s
 
 
                 <div className="flex justify-between">
-                    <button className="border-third border-2 rounded-2xl bg-prime/50 px-4 hover:bg-third mr-2"
+                    <button className="border-third border-2 rounded-2xl bg-prime/50 px-4 hover:bg-third disabled:bg-prime/30 disabled:hover:bg-third/50 mr-2"
+                        disabled={getStatus}
                         onClick={() => {
                             if (confirm("Are you sure you want to delete this event?")) {
                                 handleEventMethod("delete");
@@ -166,14 +170,19 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, s
                     </button>
 
                     <div>
-                        <button className="border-third border-2 rounded-2xl bg-prime/50 px-4 hover:bg-third mr-2"
+                        <button className="border-third border-2 rounded-2xl bg-prime/50 px-4 hover:bg-third disabled:bg-prime/30 disabled:hover:bg-third/50 mr-2"
                             onClick={() => { setSelectedEvent(undefined) }}
+                            disabled={getStatus}
                         >
                             Close
                         </button>
 
-                        <button className="border-third border-2 rounded-2xl bg-prime/50 px-4 hover:bg-third"
-                            onClick={() => { handleEventMethod("create") }}
+                        <button className="border-third border-2 rounded-2xl bg-prime/50 px-4 hover:bg-third disabled:bg-prime/30 disabled:hover:bg-third/50"
+                            onClick={() => { 
+                                if (eventTitle) handleEventMethod("create");
+                                else alert("Title cannot be left blank.");
+                            }}
+                            disabled={getStatus}
                         >
                             Save
                         </button>
@@ -181,6 +190,11 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, s
                 </div>
             </div>
         )
+    }
+
+    function colorMap(): string {
+        if (selectedEvent?.createdBy.id === currentUser?.id) return "border-blue-300";
+        else return "border-third/30";
     }
 
     const eventListProps: EventListProps = {
@@ -207,7 +221,7 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, s
                 </button>
             </header>
 
-            <div className="grow border-2 border-third/30 rounded-2xl p-4">
+            <div className={`grow border-2 ${colorMap()} rounded-2xl p-4`}>
                 {selectedEvent ? displayEvent() : <EventList {...eventListProps} />}
             </div>
         </section>

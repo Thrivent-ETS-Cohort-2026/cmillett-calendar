@@ -4,15 +4,12 @@
       "id": 0,
       "name": "Admin",
       "email": "admin@mail.com",
-      "password": "alpine",
-      "eventsById": [
-        0
-      ]
+      "password": "alpine"
     }
   ],
   "events": [
     {
-      "title": "Test Event",
+      "title": "Event",
       "date": {
         "year": 2026,
         "month": 8,
@@ -23,83 +20,85 @@
         "minute": 30,
         "suffix": "PM"
       },
-      "location": "Minnesota",
-      "description": "This is a test event. It is a really interesting test event with lots of different tests in it. I'm not sure why, but I will be there. It is going to be a grand ol' time.",
-      "createdBy": 0,
-      "invitedTo": [],
-      "id": 0
-    },
-    {
-      "title": "State Fair",
-      "date": {
-        "year": 2026,
-        "month": 8,
-        "day": 6
+      "location": "Minneapolis, Minnesota",
+      "description": "This is a test event which is happening in Minneapolis, Minnesota. It's going to be a lot of fun. sdfjdjfsjdf. jfjfjfjslls.",
+      "createdBy": {
+        "id": 0,
+        "name": "DEV",
+        "email": "dev@dev.com",
+        "password": "dev"
       },
-      "time": {
-        "hour": 1,
-        "minute": 30,
-        "suffix": "PM"
-      },
-      "location": "St. Paul, Minnesota",
-      "description": "Go to the State Fair with some friends. Meet at Como at 1:30.",
-      "createdBy": 0,
       "invitedTo": [],
       "id": 1
     },
     {
-      "title": "Return Package",
+      "title": "Dinner",
       "date": {
         "year": 2026,
         "month": 8,
-        "day": 6
+        "day": 1
       },
       "time": {
-        "hour": 11,
-        "minute": 0,
+        "hour": 4,
+        "minute": 30,
         "suffix": "AM"
       },
-      "location": "West St. Paul, Minnesota",
-      "description": "Return package to FedEx.",
-      "createdBy": 0,
+      "location": "Home",
+      "description": "Make dinner at 4:30 AM.",
+      "createdBy": {
+        "id": 0,
+        "name": "DEV",
+        "email": "dev@dev.com",
+        "password": "dev"
+      },
       "invitedTo": [],
-      "id": 2
+      "id": 3
     },
     {
       "title": "Cool",
       "date": {
         "year": 2026,
         "month": 8,
-        "day": 7
-      },
-      "time": {
-        "hour": 7,
-        "minute": 45,
-        "suffix": "PM"
-      },
-      "location": "A cool place",
-      "description": "With cool people.",
-      "createdBy": 0,
-      "invitedTo": [],
-      "id": 3
-    },
-    {
-      "title": "Julien's Birthday",
-      "date": {
-        "year": 2026,
-        "month": 10,
-        "day": 2
+        "day": 1
       },
       "time": {
         "hour": 12,
-        "minute": 0,
-        "suffix": "AM"
+        "minute": 30,
+        "suffix": "PM"
       },
-      "location": "Oregon",
-      "description": "Julien is turning 16.",
-      "createdBy": 0,
+      "location": "",
+      "description": "",
+      "createdBy": {
+        "id": 0,
+        "name": "DEV",
+        "email": "dev@dev.com",
+        "password": "dev"
+      },
       "invitedTo": [],
       "id": 4
+    },
+    {
+      "title": "Neat",
+      "date": {
+        "year": 2026,
+        "month": 8,
+        "day": 1
+      },
+      "time": {
+        "hour": 12,
+        "minute": 30,
+        "suffix": "PM"
+      },
+      "location": "",
+      "description": "",
+      "createdBy": {
+        "id": 0,
+        "name": "DEV",
+        "email": "dev@dev.com",
+        "password": "dev"
+      },
+      "invitedTo": [],
+      "id": 5
     }
   ]
 }

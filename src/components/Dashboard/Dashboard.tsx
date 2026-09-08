@@ -23,7 +23,7 @@ export default function Dashboard({ currentUser }: DashboardProps) {
         (async () => {
             const events: Event[] = await fetchEvents();
 
-            const findUserEvents: Event[] = events.filter((event) => event.createdBy === currentUser?.id);
+            const findUserEvents: Event[] = events.filter((event) => event.createdBy.id === currentUser?.id);
 
             setCurrentUserEvents(findUserEvents);
         })()
@@ -34,6 +34,7 @@ export default function Dashboard({ currentUser }: DashboardProps) {
         getSelectedDate: selectedDate,
         currentUser: currentUser,
         userEvents: currentUserEvents,
+        getStatus: loadingStatus,
         setStatus: (status) => setLoadingStatus(status)
     }
 

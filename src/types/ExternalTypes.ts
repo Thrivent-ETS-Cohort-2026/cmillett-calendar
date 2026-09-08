@@ -6,7 +6,6 @@ export interface User {
     name: string;
     email: string;
     password: string;
-    eventsById: number[];
 }
 
 export interface Event {
@@ -16,6 +15,6 @@ export interface Event {
     time: TimeFormat
     location: string;
     description: string;
-    createdBy: number;
+    createdBy: User;
     invitedTo: number[];
 }

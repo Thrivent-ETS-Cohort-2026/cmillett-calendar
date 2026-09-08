@@ -49,7 +49,7 @@ export default function CalView({ currentDate, userEvents, getSelectedDate, setS
                 day === getSelectedDate.day
             ) selected = true;
 
-            // grab date include iterated day
+            // grab date, include iterated day
             const thisDate: DateFormat = {
                 year: displayedDate.year,
                 month: displayedDate.month,
@@ -66,7 +66,7 @@ export default function CalView({ currentDate, userEvents, getSelectedDate, setS
                     className="text-left hover:bg-third/50"
                     onClick={() => { setSelectedDate(thisDate) }}
                 >
-                    <div className={`size-full border rounded-md p-2 flex flex-col 
+                    <div className={`size-full border rounded-md p-2 flex flex-col  
                         ${selected ? "border-blue-300" : "border-prime-text"}
                         ${today ? "bg-prime/60" : "bg-third/20"}`
                     }>

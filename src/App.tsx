@@ -15,8 +15,7 @@ export default function App() {
     id: 0,
     name: "DEV",
     email: "dev@dev.com",
-    password: "dev",
-    eventsById: []
+    password: "dev"
   }
 
   const [currentUser, setCurrentUser] = useState<User | undefined>(devUser);
