@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 
 import { createEventTemplate, dayList, monthList } from "../../data/Data";
-import { addUserToInvite, createInvite, fetchInvites, handleEventDelete, handleEventUpdate } from "../../service/EventService";
+import { acceptInvite, addUserToInvite, createInvite, fetchInvites, handleEventDelete, handleEventUpdate } from "../../service/EventService";
+import { fetchUsers } from "../../service/UserService";
 
 import EventList from "./EventList";
 
 import type { Days, HourFormat, MinuteFormat, SuffixFormat } from "../../types/DataTypes";
 import type { CalDetailsProps, EventListProps } from "../../types/PropTypes";
 import type { Invite, Event, User } from "../../types/ExternalTypes";
-import { fetchUsers } from "../../service/UserService";
 
 
-export default function CalDetails({ getSelectedDate, currentUser, userEvents, userInvites, getStatus, setStatus }: CalDetailsProps) {
+export default function CalDetails({ getSelectedDate, currentUser, userEvents, userInvites, userCreatedInvites, getStatus, setStatus }: CalDetailsProps) {
 
     const [selectedEvent, setSelectedEvent] = useState<Event | undefined>(undefined);
     const [selectedInvite, setSelectedInvite] = useState<Invite | undefined>(undefined);
@@ -70,7 +70,7 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, u
     }
 
     function renderInviteesAsEvent() {
-        const invite = userInvites.find((invite) => invite.event === selectedEvent)
+        const invite = userCreatedInvites.find((invite) => invite.event.id === selectedEvent!.id)
         if (!invite) return (
             <p>
                 No users have been invited.
@@ -116,17 +116,27 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, u
         const userFound: User | undefined = allUsers.find((user) => user.email === inviteInput);
 
         const allInvites: Invite[] = await fetchInvites();
-        const inviteFound: Invite | undefined = allInvites.find((invite) => invite.event === selectedEvent);
+        const inviteFound: Invite | undefined = allInvites.find((invite) => invite.event.id === selectedEvent?.id);
+        console.log(inviteFound);
 
         if (userFound) {
             if (!inviteFound) {
                 createInvite(selectedEvent!, userFound);
             } else if (inviteFound) {
-                addUserToInvite(inviteFound, userFound);
+                if (inviteFound.invitees.find((invitee) => invitee.id === userFound.id)) {
+                    alert("User is already invited!");
+                } else {
+                    addUserToInvite(inviteFound, userFound);
+                }
             }
         } else alert("Invalid email address.");
+
+        setInviteInput("");
     }
 
+    function handleInviteAccept() {
+
+    }
 
     function displayEvent() {
         return (
@@ -325,7 +335,7 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, u
                     <button className="border-third border-2 rounded-2xl bg-prime/50 px-4 hover:bg-third disabled:opacity-30 disabled:cursor-not-allowed mr-2"
                         disabled
                     >
-                        Delete
+                        Reject
                     </button>
 
                     <div>
@@ -336,9 +346,9 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, u
                         </button>
 
                         <button className="border-third border-2 rounded-2xl bg-prime/50 px-4 hover:bg-third disabled:opacity-30 disabled:cursor-not-allowed"
-                            disabled
+                            onClick={() => acceptInvite(selectedInvite!, currentUser!)}
                         >
-                            Save
+                            Accept
                         </button>
                     </div>
                 </div>

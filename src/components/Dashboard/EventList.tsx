@@ -44,7 +44,7 @@ export default function EventList({ getSelectedDate, currentUser, userEvents, us
         const currentInvitee = invite.invitees.find((invitee) => invitee.id === currentUser!.id);
 
         if (currentInvitee!.status === "pending") return "border-yellow-100";
-        if (currentInvitee!.status === "accepted") return "border-green-100";
+        if (currentInvitee!.status === "accepted") return "border-green-300";
         if (currentInvitee!.status === "rejected") return "border-red-300";
 
         else throw new Error("colorMapInvites() out of type!");

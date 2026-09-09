@@ -16,6 +16,7 @@ export default function Dashboard({ currentUser }: DashboardProps) {
 
     const [currentUserEvents, setCurrentUserEvents] = useState<Event[]>([]);
     const [currentUserInvites, setCurrentUserInvites] = useState<Invite[]>([]);
+    const [currentUserCreatedInvites, setCurrentUserCreatedInvites] = useState<Invite[]>([]);
     const [selectedDate, setSelectedDate] = useState<DateFormat>(currentDate);
 
     const [loadingStatus, setLoadingStatus] = useState<boolean>(false);
@@ -45,12 +46,26 @@ export default function Dashboard({ currentUser }: DashboardProps) {
         })()
     }, [])
 
+    // fetch user created events that contain invites
+    useEffect(() => {
+        (async () => {
+            const invites: Invite[] = await fetchInvites();
+
+            const findUserCreatedInvites: Invite[] = invites.filter((invite) =>
+                invite.event.createdBy.id === currentUser!.id
+            );
+            
+            setCurrentUserCreatedInvites(findUserCreatedInvites);
+        })()
+    }, [])
+
 
     const calDetailsProps: CalDetailsProps = {
         getSelectedDate: selectedDate,
         currentUser: currentUser,
         userEvents: currentUserEvents,
         userInvites: currentUserInvites,
+        userCreatedInvites: currentUserCreatedInvites,
         getStatus: loadingStatus,
         setStatus: (status) => setLoadingStatus(status)
     }

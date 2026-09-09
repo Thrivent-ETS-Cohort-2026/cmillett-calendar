@@ -45,7 +45,7 @@ export default function DayInfo({ currentUser, userEvents, userInvites, thisDate
         const currentInvitee = invite.invitees.find((invitee) => invitee.id === currentUser!.id);
 
         if (currentInvitee!.status === "pending") return "bg-yellow-100";
-        if (currentInvitee!.status === "accepted") return "bg-green-100";
+        if (currentInvitee!.status === "accepted") return "bg-green-300";
         if (currentInvitee!.status === "rejected") return "bg-red-300";
 
         else throw new Error("colorMapInvites() out of type!");

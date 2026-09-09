@@ -25,6 +25,7 @@ export interface CalDetailsProps {
     currentUser: User | undefined;
     userEvents: Event[];
     userInvites: Invite[];
+    userCreatedInvites: Invite[];
     getStatus: boolean;
     setStatus: (status: boolean) => void;
 }

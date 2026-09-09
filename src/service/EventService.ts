@@ -89,7 +89,7 @@ export async function createInvite(event: Event, invitee: User): Promise<void> {
     }
 }
 
-export async function addUserToInvite(invite: Invite, invitee: User) {
+export async function addUserToInvite(invite: Invite, invitee: User): Promise<void> {
     try {
         const response = await fetch(`http://localhost:3000/invites/${invite.id}`, {
             method: "PATCH",
@@ -108,6 +108,25 @@ export async function addUserToInvite(invite: Invite, invitee: User) {
             })
         });
         if (!response.ok) throw new Error("PATCH response failed in addUserToInvite()");
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function acceptInvite(invite: Invite, user: User): Promise<void> {
+    try {
+        const response = await fetch(`http://localhost:3000/invites/${invite.id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                invitees: invite.invitees.map((invitee) =>
+                    invitee.id === user.id
+                        ? { ...invitee, status: "accepted" }
+                        : invitee
+                )
+            })
+        })
+        if (!response.ok) throw new Error("PATCH response failed in acceptInvite()");
     } catch (error: any) {
         throw new Error(error);
     }
