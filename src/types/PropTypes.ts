@@ -6,6 +6,8 @@ export interface HeaderProps {
     activeUserCallback: (user: User | undefined) => void;
     toggleDisplayLoginCallback: (toggle: boolean) => void;
     toggleDisplaySignupCallback: (toggle: boolean) => void;
+    toggleDisplaySettingsCallback: (toggle: boolean) => void;
+    displaySettingsToggle: boolean;
 }
 
 export interface LoginProps {
@@ -14,6 +16,10 @@ export interface LoginProps {
 
 export interface SignupProps {
     setUserCallback: (user: User) => void;
+}
+
+export interface SettingsProps {
+    currentUser: User | undefined;
 }
 
 export interface DashboardProps {

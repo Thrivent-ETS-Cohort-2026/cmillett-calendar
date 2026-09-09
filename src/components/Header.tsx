@@ -2,7 +2,7 @@ import type { HeaderProps } from "../types/PropTypes";
 
 
 export default function Header(
-    { activeUser, activeUserCallback, toggleDisplayLoginCallback, toggleDisplaySignupCallback }: HeaderProps) {
+    { activeUser, activeUserCallback, toggleDisplayLoginCallback, toggleDisplaySignupCallback, toggleDisplaySettingsCallback, displaySettingsToggle }: HeaderProps) {
 
     function handleLogout() {
         if (confirm("Are you sure you want to logout?")) {
@@ -19,7 +19,7 @@ export default function Header(
                     </h2>
 
                     <button className="border-third border-2 rounded-2xl bg-secnd px-10 my-2 hover:bg-third"
-                        onClick={() => {}}
+                        onClick={() => toggleDisplaySettingsCallback(!displaySettingsToggle)}
                     >
                         Settings
                     </button>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { createEventTemplate, dayList, monthList } from "../../data/Data";
-import { acceptInvite, addUserToInvite, createInvite, fetchInvites, handleEventDelete, handleEventUpdate } from "../../service/EventService";
+import { addUserToInvite, createInvite, fetchInvites, handleEventDelete, handleEventUpdate, modifyInviteStatus } from "../../service/EventService";
 import { fetchUsers } from "../../service/UserService";
 
 import EventList from "./EventList";
@@ -15,9 +15,13 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, u
 
     const [selectedEvent, setSelectedEvent] = useState<Event | undefined>(undefined);
     const [selectedInvite, setSelectedInvite] = useState<Invite | undefined>(undefined);
-    // reset selectedEvent when user changes date.
-    useEffect(() => { setSelectedEvent(undefined) }, [getSelectedDate])
+    // reset selectedEvent and selectedInvite when user changes date.
+    useEffect(() => { 
+        setSelectedEvent(undefined);
+        setSelectedInvite(undefined);
+    }, [getSelectedDate])
 
+    // inputs
     const [eventTitle, setEventTitle] = useState<string>();
     const [eventHour, setEventHour] = useState<HourFormat>();
     const [eventMinute, setEventMinute] = useState<MinuteFormat>();
@@ -26,6 +30,11 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, u
     const [eventDescription, setEventDescription] = useState<string>();
 
     const [inviteInput, setInviteInput] = useState<string>();
+
+    const [borderColor, setBorderColor] = useState<string>(() => colorMapBorder());
+    useEffect(() => {
+        setBorderColor(colorMapBorder());
+    }, [getStatus, getSelectedDate, selectedEvent, selectedInvite, userInvites])
 
     // populate fields with current event info or default info if creating a new event.
     useEffect(() => {
@@ -112,30 +121,72 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, u
     }
 
     async function inviteUser() {
+        setStatus(true)
+
         const allUsers: User[] = await fetchUsers();
         const userFound: User | undefined = allUsers.find((user) => user.email === inviteInput);
 
         const allInvites: Invite[] = await fetchInvites();
-        const inviteFound: Invite | undefined = allInvites.find((invite) => invite.event.id === selectedEvent?.id);
-        console.log(inviteFound);
+        let inviteFound: Invite | undefined = undefined;
+        if (selectedInvite) {
+            inviteFound = allInvites.find((invite) => invite.id === selectedInvite.id);
+        }
+        else if (selectedEvent) {
+            inviteFound = allInvites.find((invite) =>
+                invite.event.id === selectedEvent.id &&
+                invite.event.createdBy.id === selectedEvent.createdBy.id
+            );
+        }
+
+        console.log("invite", selectedInvite)
+        console.log("event", selectedEvent)
+
+        console.log("inviteFound", inviteFound)
 
         if (userFound) {
+            // selection is event
             if (!inviteFound) {
-                createInvite(selectedEvent!, userFound);
-            } else if (inviteFound) {
+                if (selectedEvent?.createdBy.email === inviteInput) alert("Cannot invite event creator.");
+
+                else await createInvite(selectedEvent!, userFound);
+            }
+            // selection is invite
+            else if (inviteFound) {
                 if (inviteFound.invitees.find((invitee) => invitee.id === userFound.id)) {
                     alert("User is already invited!");
-                } else {
-                    addUserToInvite(inviteFound, userFound);
+                    setInviteInput("");
+                    setStatus(false);
+                    return;
                 }
+
+                if (inviteFound.event.createdBy.email === inviteInput) {
+                    alert("Cannot invite event creator.");
+                    setInviteInput("");
+                    setStatus(false);
+                    return
+                }
+
+                await addUserToInvite(inviteFound, userFound);
             }
         } else alert("Invalid email address.");
 
         setInviteInput("");
+        setStatus(false);
     }
 
-    function handleInviteAccept() {
+    async function handleInviteStatus(status: "accepted" | "rejected"): Promise<void> {
+        if (!selectedInvite || !currentUser) return;
 
+        setStatus(true);
+        try {
+            await modifyInviteStatus(selectedInvite, currentUser, status);
+
+            const invites = await fetchInvites();
+            const updatedInvite = invites.find((invite) => invite.id === selectedInvite.id);
+            setSelectedInvite(updatedInvite);
+        } finally {
+            setStatus(false);
+        }
     }
 
     function displayEvent() {
@@ -280,7 +331,7 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, u
             <div className="h-full flex flex-col">
                 <header className="flex justify-between text-xl font-bold mb-2">
                     <h2 className="grow mr-2">
-                        {invite.title}
+                        {invite.title} : {invite.createdBy.email}
                     </h2>
                     <div className="flex">
                         <p>{invite.time.hour}:{invite.time.minute} {invite.time.suffix}</p>
@@ -324,8 +375,12 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, u
                     <input
                         placeholder="example@mail.com"
                         className="resize-none w-full border border-third rounded px-4 py-2"
+                        value={inviteInput}
+                        onChange={(e) => setInviteInput(e.target.value)}
                     />
-                    <button className="border-third border-2 rounded px-2 bg-prime/50 hover:bg-third">
+                    <button className="border-third border-2 rounded px-2 bg-prime/50 hover:bg-third"
+                        onClick={() => inviteUser()}
+                    >
                         Add
                     </button>
                 </div>
@@ -333,20 +388,20 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, u
 
                 <div className="flex justify-between">
                     <button className="border-third border-2 rounded-2xl bg-prime/50 px-4 hover:bg-third disabled:opacity-30 disabled:cursor-not-allowed mr-2"
-                        disabled
+                        onClick={async () => handleInviteStatus("rejected")}
                     >
                         Reject
                     </button>
 
                     <div>
                         <button className="border-third border-2 rounded-2xl bg-prime/50 px-4 hover:bg-third disabled:opacity-30 disabled:cursor-not-allowed mr-2"
-                            onClick={() => { setSelectedInvite(undefined) }}
+                            onClick={() => setSelectedInvite(undefined)}
                         >
                             Close
                         </button>
 
                         <button className="border-third border-2 rounded-2xl bg-prime/50 px-4 hover:bg-third disabled:opacity-30 disabled:cursor-not-allowed"
-                            onClick={() => acceptInvite(selectedInvite!, currentUser!)}
+                            onClick={async () => handleInviteStatus("accepted")}
                         >
                             Accept
                         </button>
@@ -357,8 +412,24 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, u
     }
 
 
-    function colorMap(): string {
-        if (selectedEvent?.createdBy.id === currentUser?.id) return "border-blue-300";
+    function colorMapBorder(): string {
+        // user created event
+        if (selectedEvent?.createdBy.id === currentUser?.id) {
+            return "border-blue-300";
+        }
+        // invite pending
+        if (selectedInvite?.invitees.find((invitee) => invitee.id === currentUser!.id)?.status === "pending") {
+            return "border-yellow-100";
+        }
+        // invite accepted
+        if (selectedInvite?.invitees.find((invitee) => invitee.id === currentUser!.id)?.status === "accepted") {
+            return "border-green-300";
+        }
+        // invite rejected
+        if (selectedInvite?.invitees.find((invitee) => invitee.id === currentUser!.id)?.status === "rejected") {
+            return "border-red-300";
+        }
+        // fallback
         else return "border-third/30";
     }
 
@@ -367,8 +438,14 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, u
         currentUser: currentUser,
         userEvents: userEvents,
         userInvites: userInvites,
-        setSelectedEvent: (event) => setSelectedEvent(event),
-        setSelectedInvite: (invite) => setSelectedInvite(invite)
+        setSelectedEvent: (event) => {
+            setSelectedInvite(undefined);
+            setSelectedEvent(event);
+        },
+        setSelectedInvite: (invite) => {
+            setSelectedEvent(undefined);
+            setSelectedInvite(invite);
+        }
     }
 
     return (
@@ -388,7 +465,7 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, u
                 </button>
             </header>
 
-            <div className={`grow border-2 ${colorMap()} rounded-2xl p-4`}>
+            <div className={`grow border-2 ${borderColor} rounded-2xl p-4`}>
                 {/* Nothing selected */}
                 {!selectedEvent && !selectedInvite && <EventList {...eventListProps} />}
 

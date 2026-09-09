@@ -14,18 +14,34 @@ export async function fetchEvents(): Promise<Event[]> {
 }
 
 export async function handleEventUpdate(event: Event): Promise<void> {
+    // update event
     if (event.id) {
         try {
-            const response = await fetch(`http://localhost:3000/events/${event.id}`, {
+            const eventResponse = await fetch(`http://localhost:3000/events/${event.id}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(event)
             });
-            if (!response.ok) throw new Error("PATCH response failed!");
+            if (!eventResponse.ok) throw new Error("PATCH event response failed in handleEventUpdate()!");
+
+            // check if event is also an invite. If so, update invite.
+            const invite: Invite | undefined = (await fetchInvites()).find((invite) => invite.event.id === event.id);
+            if (invite) {
+                const inviteResponse = await fetch(`http://localhost:3000/invites/${invite.id}`, {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        event: event
+                    })
+                });
+                if (!inviteResponse) throw new Error("PATCH invite response failed in handleEventUpdate()!")
+            }
         } catch (error: any) {
             throw new Error(error);
         }
-    } else if (!event.id) {
+    } 
+    // create new event
+    else if (!event.id) {
         try {
             const response = await fetch("http://localhost:3000/events", {
                 method: "POST",
@@ -113,7 +129,7 @@ export async function addUserToInvite(invite: Invite, invitee: User): Promise<vo
     }
 }
 
-export async function acceptInvite(invite: Invite, user: User): Promise<void> {
+export async function modifyInviteStatus(invite: Invite, user: User, status: "pending" | "accepted" | "rejected"): Promise<void> {
     try {
         const response = await fetch(`http://localhost:3000/invites/${invite.id}`, {
             method: "PATCH",
@@ -121,7 +137,7 @@ export async function acceptInvite(invite: Invite, user: User): Promise<void> {
             body: JSON.stringify({
                 invitees: invite.invitees.map((invitee) =>
                     invitee.id === user.id
-                        ? { ...invitee, status: "accepted" }
+                        ? { ...invitee, status: status }
                         : invitee
                 )
             })

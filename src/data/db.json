@@ -21,103 +21,84 @@
   ],
   "events": [
     {
-      "title": "Event",
+      "title": "My Event",
       "date": {
         "year": 2026,
         "month": 8,
-        "day": 8
+        "day": 9
       },
       "time": {
-        "hour": 12,
+        "hour": 4,
         "minute": 30,
         "suffix": "PM"
       },
-      "location": "Minnesota",
-      "description": "Event owned by DEV. This is a really cool event. I'm going to invite a lot of people to it.",
+      "location": "Home",
+      "description": "Created by Admin. This is my event, no one is invited.",
       "createdBy": {
         "id": 0,
-        "name": "DEV",
-        "email": "dev@dev.com",
-        "password": "dev"
+        "name": "Admin",
+        "email": "admin@mail.com",
+        "password": "alpine"
       },
       "id": 1
+    },
+    {
+      "title": "Event UPDATED FR",
+      "date": {
+        "year": 2026,
+        "month": 8,
+        "day": 9
+      },
+      "time": {
+        "hour": 1,
+        "minute": 30,
+        "suffix": "PM"
+      },
+      "location": "Work",
+      "description": "Created by Admin. This is my event. People are invited.",
+      "createdBy": {
+        "id": 0,
+        "name": "Admin",
+        "email": "admin@mail.com",
+        "password": "alpine"
+      },
+      "id": 2
     }
   ],
   "invites": [
     {
       "event": {
-        "title": "Event",
+        "id": 2,
+        "title": "Event UPDATED FR",
         "date": {
           "year": 2026,
           "month": 8,
-          "day": 8
+          "day": 9
         },
         "time": {
-          "hour": 12,
+          "hour": 1,
           "minute": 30,
           "suffix": "PM"
         },
-        "location": "Minnesota",
-        "description": "Event owned by DEV. This is a really cool event. I'm going to invite a lot of people to it.",
+        "location": "Work",
+        "description": "Created by Admin. This is my event. People are invited.",
         "createdBy": {
           "id": 0,
-          "name": "DEV",
-          "email": "dev@dev.com",
-          "password": "dev"
-        },
-        "id": 1
+          "name": "Admin",
+          "email": "admin@mail.com",
+          "password": "alpine"
+        }
       },
       "invitees": [
         {
           "id": 1,
           "name": "John",
           "email": "john@mail.com",
-          "password": "alpine",
-          "status": "pending"
-        },
-        {
-          "id": 2,
-          "name": "Mark",
-          "email": "mark@mail.com",
           "password": "alpine",
           "status": "pending"
         }
       ],
       "id": 1
-    },
-    {
-      "event": {
-        "title": "Invite",
-        "date": {
-          "year": 2026,
-          "month": 8,
-          "day": 8
-        },
-        "time": {
-          "hour": 12,
-          "minute": 30,
-          "suffix": "PM"
-        },
-        "location": "Minnesota",
-        "description": "Invite owned by John. This is a really cool event. I'm going to invite a lot of people to it.",
-        "createdBy": {
-          "id": 1,
-          "name": "John",
-          "email": "john@mail.com",
-          "password": "alpine"
-        },
-        "id": 1
-      },
-      "invitees": [
-        {
-          "id": 0,
-          "name": "DEV",
-          "email": "dev@dev.com",
-          "password": "alpine",
-          "status": "accepted"
-        }
-      ],
-      "id": 2
     }
   ]
 }

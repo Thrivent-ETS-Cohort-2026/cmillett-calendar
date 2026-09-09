@@ -44,7 +44,7 @@ export default function Dashboard({ currentUser }: DashboardProps) {
             console.log(findUserInvites)
             setCurrentUserInvites(findUserInvites);
         })()
-    }, [])
+    }, [loadingStatus])
 
     // fetch user created events that contain invites
     useEffect(() => {
@@ -57,7 +57,7 @@ export default function Dashboard({ currentUser }: DashboardProps) {
             
             setCurrentUserCreatedInvites(findUserCreatedInvites);
         })()
-    }, [])
+    }, [loadingStatus])
 
 
     const calDetailsProps: CalDetailsProps = {
