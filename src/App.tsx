@@ -12,6 +12,7 @@ import Settings from "./components/Settings";
 
 export default function App() {
 
+  // DEV USER, used for testing.
   // const devUser: User = {
   //   id: 0,
   //   name: "Admin",
@@ -24,7 +25,6 @@ export default function App() {
   const [displayLoginToggle, setDisplayLoginToggle] = useState<boolean>(false);
   const [displaySignupToggle, setDisplaySignupToggle] = useState<boolean>(false);
   const [displaySettingsToggle, setDisplaySettingsToggle] = useState<boolean>(false);
-
 
   useEffect(() => {
     setDisplayLoginToggle(false);

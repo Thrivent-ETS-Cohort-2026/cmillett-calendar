@@ -68,7 +68,7 @@ export default function CalView({ currentUser, currentDate, userEvents, userInvi
                     className="size-full text-left hover:bg-third/50"
                     onClick={() => { setSelectedDate(thisDate) }}
                 >
-                    <div className={`size-full border rounded-md p-2 flex flex-col  
+                    <div className={`size-full border rounded-md p-2 flex flex-col 
                         ${selected ? "border-blue-300" : "border-prime-text"}
                         ${today ? "bg-prime/60" : "bg-third/20"}`
                     }>

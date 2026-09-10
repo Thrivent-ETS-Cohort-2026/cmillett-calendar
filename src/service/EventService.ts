@@ -39,7 +39,7 @@ export async function handleEventUpdate(event: Event): Promise<void> {
         } catch (error: any) {
             throw new Error(error);
         }
-    } 
+    }
     // create new event
     else if (!event.id) {
         try {
@@ -58,11 +58,22 @@ export async function handleEventUpdate(event: Event): Promise<void> {
 export async function handleEventDelete(event: Event): Promise<void> {
     if (event.id) {
         try {
-            const response = await fetch(`http://localhost:3000/events/${event.id}`, {
+            const eventResponse = await fetch(`http://localhost:3000/events/${event.id}`, {
                 method: "DELETE",
                 headers: { "Content-Type": "application/json" }
             });
-            if (!response.ok) throw new Error("DELETE response failed!");
+            if (!eventResponse.ok) throw new Error("DELETE event response failed!");
+
+            const allInvites: Invite[] = await fetchInvites();
+            const foundInvite = allInvites.find((invite) => invite.event.id === event.id);
+
+            if (foundInvite) {
+                const inviteResponse = await fetch(`http://localhost:3000/invites/${foundInvite.id}`, {
+                    method: "DELETE",
+                    headers: { "Content-Type": "application/json" }
+                });
+                if (!inviteResponse.ok) throw new Error("DELETE event response failed!");
+            }
         } catch (error: any) {
             throw new Error(error);
         }

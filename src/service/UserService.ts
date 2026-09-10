@@ -12,7 +12,7 @@ export async function fetchUsers(): Promise<User[]> {
     }
 }
 
-export async function addUser(user: User): Promise<void> {
+export async function addUser(user: User): Promise<User> {
     try {
         const response = await fetch("http://localhost:3000/users", {
             method: "POST",
@@ -20,6 +20,8 @@ export async function addUser(user: User): Promise<void> {
             body: JSON.stringify(user)
         });
         if (!response.ok) throw new Error("Failed to post new user!");
+
+        return await response.json() as User;
     } catch (error: any) {
         throw new Error(error);
     }

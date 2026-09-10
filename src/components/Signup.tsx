@@ -20,11 +20,10 @@ export default function Signup({setUserCallback}: SignupProps) {
             newUser = {
                 name: nameState,
                 email: emailState,
-                password: passState,
-                eventsById: []
+                password: passState
             }
-            await addUser(newUser);
-            setUserCallback(newUser);
+            const createdUser = await addUser(newUser);
+            setUserCallback(createdUser);
         } else alert("All fields are required.");
     }
 

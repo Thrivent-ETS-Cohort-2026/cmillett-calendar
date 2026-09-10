@@ -30,7 +30,7 @@ export default function Dashboard({ currentUser }: DashboardProps) {
 
             setCurrentUserEvents(findUserEvents);
         })()
-    }, [loadingStatus]);
+    }, [loadingStatus, currentUser]);
 
     // fetch user invited events
     useEffect(() => {
@@ -41,10 +41,9 @@ export default function Dashboard({ currentUser }: DashboardProps) {
                 invite.invitees.some((user) => user.id === currentUser!.id)
             );
 
-            console.log(findUserInvites)
             setCurrentUserInvites(findUserInvites);
         })()
-    }, [loadingStatus])
+    }, [loadingStatus, currentUser])
 
     // fetch user created events that contain invites
     useEffect(() => {
@@ -57,7 +56,7 @@ export default function Dashboard({ currentUser }: DashboardProps) {
             
             setCurrentUserCreatedInvites(findUserCreatedInvites);
         })()
-    }, [loadingStatus])
+    }, [loadingStatus, currentUser])
 
 
     const calDetailsProps: CalDetailsProps = {

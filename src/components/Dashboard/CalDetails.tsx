@@ -138,11 +138,6 @@ export default function CalDetails({ getSelectedDate, currentUser, userEvents, u
             );
         }
 
-        console.log("invite", selectedInvite)
-        console.log("event", selectedEvent)
-
-        console.log("inviteFound", inviteFound)
-
         if (userFound) {
             // selection is event
             if (!inviteFound) {
