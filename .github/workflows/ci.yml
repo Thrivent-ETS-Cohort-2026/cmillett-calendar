@@ -5,13 +5,13 @@ on:
     branches: [ test/main ]
   pull_request:
     branches: [ test/main ]
-  workflow_dispatch:
-    inputs:
-      confirm_deployment:
-        description: 'Deploy code?'
-        required: true
-        type: boolean
-        default: false
+  # workflow_dispatch:
+  #   inputs:
+  #     confirm_deployment:
+  #       description: 'Deploy code?'
+  #       required: true
+  #       type: boolean
+  #       default: false
 
 jobs:
   test-app:
@@ -49,7 +49,7 @@ jobs:
   deploy-placeholder:
     runs-on: ubuntu-latest
     needs: [ test-app, build-app ]
-    if: ${{ inputs.confirm_deployment }}
+    # if input | would go here if on main branch
 
     environment:
       name: production
