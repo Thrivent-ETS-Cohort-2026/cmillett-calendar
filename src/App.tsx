@@ -57,7 +57,7 @@ export default function App() {
     currentUser: currentUser
   }
 
-  functio displayDashboard() {
+  function displayDashboard() {
     if (currentUser) {
       return (
         <>
