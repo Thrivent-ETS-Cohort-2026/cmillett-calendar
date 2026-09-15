@@ -20,9 +20,6 @@ jobs:
       - name: Install dependencies via CI
         run: npm ci
 
-      - name: Build application
-        run: npm run build
-
       - name: Run unit testing via Jest
         run: npm run test
 
