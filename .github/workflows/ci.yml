@@ -1,0 +1,22 @@
+name: Continuous Integration
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+
+      - name: Install dependencies via CI
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
