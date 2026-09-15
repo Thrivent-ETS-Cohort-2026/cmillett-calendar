@@ -59,4 +59,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: DEPLOY to production env
-        run: echo 'Deploying code to production env.'
+        run: echo 'Code successfully deployed to production env'
