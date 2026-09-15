@@ -1,5 +1,35 @@
 {
-  "users": [],
-  "events": [],
+  "users": [
+    {
+      "name": "Test",
+      "email": "test@mail.com",
+      "password": "alpine",
+      "id": 1
+    }
+  ],
+  "events": [
+    {
+      "title": "Test title",
+      "date": {
+        "year": 2026,
+        "month": 8,
+        "day": 15
+      },
+      "time": {
+        "hour": 12,
+        "minute": 30,
+        "suffix": "PM"
+      },
+      "location": "Test location",
+      "description": "test description",
+      "createdBy": {
+        "name": "Test",
+        "email": "test@mail.com",
+        "password": "alpine",
+        "id": 1
+      },
+      "id": 1
+    }
+  ],
   "invites": []
 }
