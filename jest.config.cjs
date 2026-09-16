@@ -1,7 +1,7 @@
 module.exports = {
     clearMocks: true,
     restoreMocks: true,
-    testEnvironment: 'jsdom',
+    testEnvironment: 'node',
     setupFilesAfterEnv: [],
     testMatch: ['<rootDir>/src/**/*.test.{ts,tsx}'],
     transform: {
@@ -10,7 +10,7 @@ module.exports = {
     moduleNameMapper: {
         '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     },
-    globals: {
-        fetch: global.fetch
-    }
+    // globals: {
+    //     fetch: global.fetch
+    // }
 }
